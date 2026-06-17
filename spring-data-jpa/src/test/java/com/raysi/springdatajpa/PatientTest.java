@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 public class PatientTest {
@@ -17,11 +19,39 @@ public class PatientTest {
 
     @Test
     public void patientInsertionTest(){
+        LocalDateTime localDateTime = LocalDateTime.now();
         Patient patient = Patient.builder()
                 .patientName("Alex")
-                .birthDate(LocalDate.ofEpochDay(2001- 7 - 2))
+                .birthDate(LocalDate.ofEpochDay(2001- 3 - 1))
+                .patientAdmittedTime(localDateTime)
                 .email("alex@gmail.com")
                 .build();
-        patientRepository.save(patient);
+        Patient patient2 = Patient.builder()
+                .patientName("Durian")
+                .birthDate(LocalDate.ofEpochDay(2002- 3 - 1))
+                .patientAdmittedTime(localDateTime)
+                .email("durian@gmail.com")
+                .build();
+        patientRepository.saveAll(List.of(patient, patient2));
+    }
+
+    @Test
+    public void getPatientTest(){
+        List<Patient> patients = patientRepository.findAll();
+        if (patients.isEmpty())
+            System.out.println("No patient data available");
+        for (var patient : patients)
+            System.out.println(patient.toString());
+    }
+
+    @Test
+    public void deletePatientTest(){
+        patientRepository.deleteAll();
+    }
+
+    @Test
+    public void deletePatientById(){
+        Long id = 102L;
+        patientRepository.deleteById(id);
     }
 }
