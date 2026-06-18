@@ -72,4 +72,22 @@ public class PatientTest {
     public void transactionTest(){
         patientService.patientService();
     }
+
+    @Test
+    public void getPatientByNameTest(){
+        Optional<Patient> patient = patientRepository.findByPatientName("Kiran Rai");
+        if (patient.isPresent())
+            System.out.println(patient);
+        else
+            System.out.println("No such patient exists");
+    }
+    @Test
+    public void getPatientByNameAndBirthDateTest(){
+        LocalDate birthDate = LocalDate.of(1998, 5, 14);
+        Optional<Patient> patient = patientRepository.findByPatientNameAndBirthDate("Aarav Sharma", birthDate);
+        if (patient.isPresent())
+            System.out.println(patient);
+        else
+            System.out.println("No such patient exists");
+    }
 }
