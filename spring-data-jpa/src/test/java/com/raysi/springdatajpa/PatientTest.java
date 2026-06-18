@@ -3,6 +3,7 @@ package com.raysi.springdatajpa;
 
 import com.raysi.springdatajpa.patient.entity.Patient;
 import com.raysi.springdatajpa.patient.repository.PatientRepository;
+import com.raysi.springdatajpa.patient.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,8 @@ public class PatientTest {
 
     @Autowired
     private  PatientRepository patientRepository;
+    @Autowired
+    private PatientService patientService;
 
     @Test
     public void patientInsertionTest(){
@@ -53,5 +56,10 @@ public class PatientTest {
     public void deletePatientById(){
         Long id = 102L;
         patientRepository.deleteById(id);
+    }
+
+    @Test
+    public void serviceTest(){
+        patientService.patientService();
     }
 }
