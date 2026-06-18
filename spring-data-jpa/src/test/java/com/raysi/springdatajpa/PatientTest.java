@@ -59,7 +59,7 @@ public class PatientTest {
     }
 
     @Test
-    public void serviceTest(){
+    public void transactionTest(){
         patientService.patientService();
     }
 }

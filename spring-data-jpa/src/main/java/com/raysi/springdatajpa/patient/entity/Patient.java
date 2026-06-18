@@ -1,7 +1,10 @@
 package com.raysi.springdatajpa.patient.entity;
 
+import com.raysi.springdatajpa.patient.entity.imp.BloodGroup;
+import com.raysi.springdatajpa.patient.entity.imp.Gender;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CurrentTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,7 +22,7 @@ import java.time.LocalDateTime;
 public class Patient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long patientId;
 
     @Column(
@@ -30,9 +33,13 @@ public class Patient {
 
     private LocalDate birthDate;
 
-    @Column(
-            updatable = false
-    )
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Enumerated(EnumType.STRING)
+    private BloodGroup bloodGroup;
+
+    @CurrentTimestamp
     private LocalDateTime patientAdmittedTime;
 
     @Column(
