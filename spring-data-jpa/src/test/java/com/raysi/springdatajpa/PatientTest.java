@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class PatientTest {
@@ -45,6 +46,15 @@ public class PatientTest {
             System.out.println("No patient data available");
         for (var patient : patients)
             System.out.println(patient.toString());
+    }
+
+    @Test
+    public void getPatientByIdTest(){
+        Optional<Patient> patient = patientRepository.findById(10L);
+        if (patient.isPresent())
+            System.out.println(patient);
+        else
+            System.out.println("No patient with such id exists");
     }
 
     @Test
