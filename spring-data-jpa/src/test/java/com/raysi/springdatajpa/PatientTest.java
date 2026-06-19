@@ -90,4 +90,13 @@ public class PatientTest {
         else
             System.out.println("No such patient exists");
     }
+
+    //Testing JPQL
+    @Test
+    public void jpqlTest(){
+        List<Object[]> bloodGroupCount = patientRepository.countByBloodGroup();
+        for (Object[] objects : bloodGroupCount){
+            System.out.println(objects[0] + "       " + objects[1]);
+        }
+    }
 }
