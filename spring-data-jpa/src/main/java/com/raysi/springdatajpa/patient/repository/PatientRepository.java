@@ -18,4 +18,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     @Query("select p.bloodGroup, count(p) from Patient as p group by p.bloodGroup")
     List<Object[]> countByBloodGroup();
+
+    @Query("select p.patientName from Patient as p")
+    List<String> findAllNames();
 }

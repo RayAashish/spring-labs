@@ -99,4 +99,10 @@ public class PatientTest {
             System.out.println(objects[0] + "       " + objects[1]);
         }
     }
+
+    @Test
+    public void findAllName(){
+        List<String> patientNames = patientRepository.findAllNames();
+        System.out.println(patientNames);
+    }
 }
