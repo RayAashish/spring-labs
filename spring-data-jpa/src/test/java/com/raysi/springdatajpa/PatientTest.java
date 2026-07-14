@@ -105,4 +105,10 @@ public class PatientTest {
         List<String> patientNames = patientRepository.findAllNames();
         System.out.println(patientNames);
     }
+
+    @Test
+    public void findAllPatientsTest(){
+        List<Patient> patients = patientRepository.findAllPatients();
+        System.out.println(patients);
+    }
 }
