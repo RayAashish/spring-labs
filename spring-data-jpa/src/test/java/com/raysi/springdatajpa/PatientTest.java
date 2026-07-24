@@ -4,9 +4,13 @@ package com.raysi.springdatajpa;
 import com.raysi.springdatajpa.patient.entity.Patient;
 import com.raysi.springdatajpa.patient.repository.PatientRepository;
 import com.raysi.springdatajpa.patient.service.PatientService;
+import org.hibernate.query.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -110,5 +114,27 @@ public class PatientTest {
     public void findAllPatientsTest(){
         List<Patient> patients = patientRepository.findAllPatients();
         System.out.println(patients);
+    }
+
+    @Test
+    public void pageableTesting(){
+        Slice<Patient> patientPage = patientRepository.findAll(PageRequest.of(0, 2));
+        for (Patient p : patientPage){
+            System.out.println(p);
+        }
+    }
+
+    @Test
+    public void individualSortTesting(){
+        List<Patient> patients = patientRepository.findAll(Sort.by("birthDate").ascending());
+        System.out.println(patients);
+    }
+
+    @Test
+    public void pagingSortingTest(){
+        Slice<Patient> patients = patientRepository.findAll(PageRequest.of(1, 4, Sort.by("patientName").ascending()));
+        for (Patient p : patients){
+            System.out.println(p);
+        }
     }
 }
