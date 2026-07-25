@@ -47,4 +47,8 @@ public class Patient {
           nullable = false
     )
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "patient_insurance_id")
+    private Insurance insurance;
 }
