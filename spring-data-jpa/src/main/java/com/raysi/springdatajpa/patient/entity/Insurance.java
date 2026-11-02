@@ -20,12 +20,16 @@ public class Insurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long policyId;
+
     @Column(nullable = false, unique = true, length = 20)
     private String policyNumber;
+
     @Column(nullable = false)
     private String provider;
+
     @Column(nullable = false)
     private LocalDate validUntil;
+
     @CurrentTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
